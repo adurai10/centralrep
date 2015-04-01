@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://com/polaris/fulfillment/webservices/accountservice" xmlns:fulfillment="http://webservices.fulfillment.polaris.com" targetNamespace="http://com/polaris/fulfillment/webservices/accountservice" elementFormDefault="qualified">
+	<xsd:import namespace="http://webservices.fulfillment.polaris.com" schemaLocation="FulFillmentDetails.xsd"/>
+	<xsd:element name="FulFillmentDetailsRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="fulfillmentNumber" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="FulFillmentDetailsResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="FulFillmentDetails" type="fulfillment:FulFillment"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

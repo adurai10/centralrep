@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:sch0="http://com/polaris/fulfillment/webservices/accountservice" xmlns:sch1="http://webservices.fulfillment.polaris.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://com/polaris/fulfillment/webservices/accountservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://com/polaris/fulfillment/webservices/accountservice">
+  <wsdl:types>
+    <xsd:schema xmlns="http://com/polaris/fulfillment/webservices/accountservice" xmlns:fulfillment="http://webservices.fulfillment.polaris.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://com/polaris/fulfillment/webservices/accountservice">
+      <xsd:import namespace="http://webservices.fulfillment.polaris.com"/>
+      <xsd:element name="FulFillmentDetailsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="fulfillmentNumber" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FulFillmentDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="FulFillmentDetails" type="fulfillment:FulFillment"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xs:schema xmlns="http://webservices.fulfillment.polaris.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://webservices.fulfillment.polaris.com">
+      <xs:element name="FulFillment" type="FulFillment"/>
+      <xs:complexType name="FulFillment">
+        <xs:sequence>
+          <xs:element name="FulFillmentNumber" type="xs:string"/>
+          <xs:element name="FulFillmentName" type="xs:string"/>
+          <xs:element name="FulFillmentBalance" type="xs:double"/>
+          <xs:element name="FulFillmentStatus" type="EnumFulFillmentStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="EnumFulFillmentStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Active"/>
+          <xs:enumeration value="Inactive"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="FulFillmentDetailsRequest">
+    <wsdl:part element="tns:FulFillmentDetailsRequest" name="FulFillmentDetailsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FulFillmentDetailsResponse">
+    <wsdl:part element="tns:FulFillmentDetailsResponse" name="FulFillmentDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="FulFillmentDetailsService">
+    <wsdl:operation name="FulFillmentDetails">
+      <wsdl:input message="tns:FulFillmentDetailsRequest" name="FulFillmentDetailsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:FulFillmentDetailsResponse" name="FulFillmentDetailsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FulFillmentDetailsServiceSoap11" type="tns:FulFillmentDetailsService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="FulFillmentDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="FulFillmentDetailsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="FulFillmentDetailsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FulFillmentDetailsServices">
+    <wsdl:port binding="tns:FulFillmentDetailsServiceSoap11" name="FulFillmentDetailsServiceSoap11">
+      <soap:address location="http://localhost:8080/polaris-fulfillment/endpoints"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

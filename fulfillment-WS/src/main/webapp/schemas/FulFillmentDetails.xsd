@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://webservices.fulfillment.polaris.com" targetNamespace="http://webservices.fulfillment.polaris.com" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="FulFillment" type="FulFillment"/>
+	<xs:complexType name="FulFillment">
+		<xs:sequence>
+			<xs:element name="FulFillmentNumber" type="xs:string"/>
+			<xs:element name="FulFillmentName" type="xs:string"/>
+			<xs:element name="FulFillmentBalance" type="xs:double"/>
+			<xs:element name="FulFillmentStatus" type="EnumFulFillmentStatus"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="EnumFulFillmentStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Active"/>
+			<xs:enumeration value="Inactive"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+
+
+
+
